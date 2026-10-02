@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soumendra Sir's Biology Classes-8910587106 - NEET Physics CBT Exam</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js for graphical performance breakdown -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- HTML2Canvas for capturing score card images -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- MathJax for rendering physics formulas and equations -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Anti-photo diagonal camera mesh overlay */
+        .anti-photo-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: 
+                repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.018) 0, rgba(0, 0, 0, 0.018) 1px, transparent 0, transparent 8px),
+                repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.018) 0, rgba(0, 0, 0, 0.018) 1px, transparent 0, transparent 8px);
+        }
+
+        /* Dynamic floating candidate watermark grid */
+        .watermark-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9998;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            opacity: 0.12;
+            user-select: none;
+        }
+
+        .watermark-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(-25deg);
+            font-weight: 800;
+            font-size: 1.05rem;
+            color: #0f172a;
+            text-align: center;
+            white-space: pre-line;
+        }
+
+        /* Disable text selection across interface */
+        .no-select {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 font-sans text-slate-800 no-select min-h-screen flex flex-col justify-between" oncontextmenu="return false;">
+
+    <div class="anti-photo-overlay"></div>
+    <div id="watermarkGrid" class="watermark-container hidden"></div>
+
+    <!-- LOGIN / VERIFICATION MODAL GATE -->
+    <div id="verificationGate" class="fixed inset-0 bg-slate-900 bg-opacity-95 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-xl w-full p-6 md:p-8 border border-slate-200 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600"></div>
+            
+            <div class="text-center mb-6">
+                <h1 class="text-2xl md:text-3xl font-extrabold text-blue-900 tracking-tight">Soumendra Sir's Biology Classes-8910587106</h1>
+                <p class="text-sm font-semibold text-slate-500 mt-1"><i class="fa-solid fa-phone mr-1"></i> Contact: 8910587106</p>
+                <div class="inline-block bg-blue-50 text-blue-800 text-xs font-bold px-3 py-1.5 rounded-full mt-3 border border-blue-200">
+                    NEET PHYSICS XII EXAM SERIES 6 SET A
+                </div>
+            </div>
+
+            <!-- Rules & Info Box -->
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 mb-6 text-xs text-slate-700 space-y-2">
+                <p class="font-bold text-slate-900 border-b pb-1 text-sm"><i class="fa-solid fa-circle-info text-blue-600 mr-1.5"></i> Exam Instructions & Rules:</p>
+                <ul class="list-disc pl-4 space-y-1">
+                    <li><strong>Syllabus:</strong> Wave Optics; Dual Nature of Matter and Radiation.</li>
+                    <li><strong>Total Questions:</strong> 45 Questions | <strong>Total Marks:</strong> 180 Marks | <strong>Duration:</strong> 1 Hour (60 Mins).</li>
+                    <li><strong>Marking Scheme:</strong> <span class="text-emerald-700 font-bold">+4</span> for correct response, <span class="text-rose-600 font-bold">-1</span> for wrong response, <span class="text-slate-500 font-bold">0</span> for unattempted.</li>
+                    <li><strong>Anti-Cheating Rules:</strong> Fullscreen mode is mandatory. Switching tabs or exiting fullscreen triggers <span class="text-rose-600 font-bold">Auto-Submission</span>.</li>
+                    <li>Password format is today's date in <strong>DDMMYYYY</strong> format.</li>
+                </ul>
+            </div>
+
+            <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Candidate Name</label>
+                    <input type="text" id="candidateName" required placeholder="Enter your full name" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm transition-all" />
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Exam Password (DDMMYYYY)</label>
+                        <input type="password" id="examPassword" required placeholder="DDMMYYYY" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm transition-all" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Security Captcha</label>
+                        <div class="flex items-center space-x-2">
+                            <span id="captchaDisplay" class="bg-slate-200 text-slate-800 font-mono font-bold px-3 py-2.5 rounded-lg text-center tracking-widest text-sm border border-slate-300 select-none">3 + 5 = ?</span>
+                            <input type="text" id="captchaInput" required placeholder="Answer" class="w-24 px-3 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm text-center font-bold" />
+                        </div>
+                    </div>
+                </div>
+
+                <div id="loginError" class="hidden bg-rose-50 text-rose-700 text-xs font-semibold p-2.5 rounded-lg border border-rose-200 text-center"></div>
+
+                <button type="submit" class="w-full py-3 bg-gradient-to-r from-blue-700 to-indigo-700 hover:from-blue-800 hover:to-indigo-800 text-white font-bold rounded-xl shadow-lg transition-all text-sm flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-play"></i>
+                    <span>START CBT EXAMINATION</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- CBT EXAM MAIN HEADER -->
+    <header class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white shadow-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-2">
+            <div>
+                <h1 class="text-base md:text-lg font-bold tracking-tight">Soumendra Sir's Biology Classes-8910587106</h1>
+                <p class="text-xs text-blue-200 font-medium">NEET PHYSICS XII EXAM SERIES 6 SET A | Wave Optics & Dual Nature</p>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <div class="bg-slate-800/80 border border-slate-700 rounded-lg px-3 py-1.5 flex items-center space-x-2">
+                    <i class="fa-regular fa-clock text-amber-400 text-sm animate-pulse"></i>
+                    <span class="text-xs text-slate-300">Time Left:</span>
+                    <span id="timerDisplay" class="font-mono font-bold text-sm text-amber-300">60:00</span>
+                </div>
+                <div class="hidden sm:block bg-blue-950 border border-blue-800 rounded-lg px-3 py-1.5 text-xs text-right">
+                    <span class="text-slate-400 block text-[10px]">CANDIDATE</span>
+                    <span id="headerCandidateName" class="font-bold text-blue-200">Candidate Name</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CBT WORKSPACE -->
+    <main id="cbtMainInterface" class="max-w-7xl mx-auto w-full px-2 sm:px-4 py-4 flex-grow flex flex-col md:flex-row gap-4">
+        
+        <!-- LEFT PANEL: QUESTION CONTAINER -->
+        <section class="flex-grow bg-white rounded-xl shadow-md border border-slate-200 flex flex-col justify-between overflow-hidden">
+            
+            <!-- Question Box Header -->
+            <div class="bg-slate-50 border-b border-slate-200 px-4 py-3 flex justify-between items-center">
+                <span class="text-xs md:text-sm font-bold text-slate-700 bg-slate-200 px-3 py-1 rounded-md" id="questionNumberBadge">
+                    Question 1 of 45
+                </span>
+                <span class="text-xs font-semibold text-slate-500">
+                    Marks: <span class="text-emerald-600 font-bold">+4</span> | <span class="text-rose-600 font-bold">-1</span>
+                </span>
+            </div>
+
+            <!-- Question Body Area -->
+            <div class="p-4 md:p-6 overflow-y-auto max-h-[calc(100vh-260px)] min-h-[380px]" id="questionContentArea">
+                <!-- Dynamic Question Content Rendered Here -->
+            </div>
+
+            <!-- CBT Action Control Bar -->
+            <div class="bg-slate-50 border-t border-slate-200 px-4 py-3 flex flex-wrap gap-2 items-center justify-between">
+                <div class="flex gap-2">
+                    <button onclick="markForReview()" class="px-3 py-2 bg-amber-100 hover:bg-amber-200 text-amber-800 border border-amber-300 text-xs font-bold rounded-lg transition-all flex items-center space-x-1">
+                        <i class="fa-regular fa-bookmark"></i>
+                        <span>Mark for Review</span>
+                    </button>
+                    <button onclick="clearResponse()" class="px-3 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold rounded-lg transition-all flex items-center space-x-1">
+                        <i class="fa-solid fa-rotate-left"></i>
+                        <span>Clear Response</span>
+                    </button>
+                </div>
+
+                <div class="flex gap-2">
+                    <button onclick="prevQuestion()" id="prevBtn" class="px-4 py-2 bg-slate-700 hover:bg-slate-800 text-white text-xs font-bold rounded-lg transition-all disabled:opacity-40">
+                        <i class="fa-solid fa-chevron-left mr-1"></i> Previous
+                    </button>
+                    <button onclick="nextQuestion()" id="nextBtn" class="px-4 py-2 bg-blue-700 hover:bg-blue-800 text-white text-xs font-bold rounded-lg transition-all shadow-md">
+                        Save & Next <i class="fa-solid fa-chevron-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- RIGHT PANEL: COLOURFUL PALETTE DOTS -->
+        <aside class="w-full md:w-80 bg-white rounded-xl shadow-md border border-slate-200 p-4 flex flex-col justify-between min-w-[280px]">
+            <div>
+                <h2 class="text-sm font-bold text-slate-800 border-b border-slate-200 pb-2 mb-3 flex justify-between items-center">
+                    <span><i class="fa-solid fa-table-cells text-blue-600 mr-1.5"></i> Question Palette</span>
+                </h2>
+
+                <!-- Status Legend -->
+                <div class="grid grid-cols-2 gap-2 text-[11px] mb-4 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                    <div class="flex items-center space-x-1.5">
+                        <span class="w-3.5 h-3.5 rounded-full bg-emerald-500 inline-block border border-emerald-600"></span>
+                        <span class="text-slate-600 font-medium">Answered (<span id="countAnswered">0</span>)</span>
+                    </div>
+                    <div class="flex items-center space-x-1.5">
+                        <span class="w-3.5 h-3.5 rounded-full bg-rose-500 inline-block border border-rose-600"></span>
+                        <span class="text-slate-600 font-medium">Not Answered (<span id="countNotAnswered">45</span>)</span>
+                    </div>
+                    <div class="flex items-center space-x-1.5">
+                        <span class="w-3.5 h-3.5 rounded-full bg-amber-400 inline-block border border-amber-500"></span>
+                        <span class="text-slate-600 font-medium">Marked Review (<span id="countMarked">0</span>)</span>
+                    </div>
+                    <div class="flex items-center space-x-1.5">
+                        <span class="w-3.5 h-3.5 rounded-full bg-slate-200 inline-block border border-slate-300"></span>
+                        <span class="text-slate-600 font-medium">Not Visited (<span id="countNotVisited">44</span>)</span>
+                    </div>
+                </div>
+
+                <!-- Palette Grid Container -->
+                <div id="paletteGrid" class="grid grid-cols-5 gap-2 max-h-72 md:max-h-96 overflow-y-auto p-1 border rounded-lg border-slate-100">
+                    <!-- Dots Generated Dynamically -->
+                </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-200">
+                <button onclick="confirmSubmitTest()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg shadow-md transition-all text-xs flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>SUBMIT TEST</span>
+                </button>
+            </div>
+        </aside>
+    </main>
+
+    <!-- END RESULT & FEEDBACK REPORT (HIDDEN INITIALLY) -->
+    <div id="resultModal" class="hidden fixed inset-0 bg-slate-900 bg-opacity-95 z-50 overflow-y-auto p-4 flex items-center justify-center">
+        <div class="max-w-3xl w-full bg-white rounded-2xl shadow-2xl p-6 md:p-8 my-8 relative border border-slate-200">
+            
+            <!-- Result Card Container (Captured for Image) -->
+            <div id="resultCardCapture" class="p-4 bg-white rounded-xl border border-slate-200">
+                
+                <!-- Report Header -->
+                <div class="text-center border-b pb-4 mb-4">
+                    <h2 class="text-2xl font-extrabold text-blue-900">Soumendra Sir's Biology Classes-8910587106</h2>
+                    <p class="text-xs font-semibold text-slate-500">Contact: +91 8910587106 | NEET PHYSICS XII EXAM SERIES 6 SET A</p>
+                    <div class="mt-2 inline-block bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full border border-emerald-300">
+                        OFFICIAL PHYSICS CBT SCORECARD
+                    </div>
+                </div>
+
+                <!-- Candidate Info Summary -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 bg-slate-50 p-3 rounded-lg border border-slate-200 text-xs mb-6">
+                    <div>
+                        <span class="text-slate-400 block text-[10px]">CANDIDATE NAME</span>
+                        <span id="resCandidateName" class="font-bold text-slate-800">Candidate Name</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block text-[10px]">TOTAL MARKS</span>
+                        <span id="resTotalScore" class="font-bold text-blue-700 text-base">0 / 180</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block text-[10px]">TOTAL ATTEMPTED</span>
+                        <span id="resAttempted" class="font-bold text-slate-800">0 / 45</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block text-[10px]">ACCURACY RATE</span>
+                        <span id="resAccuracy" class="font-bold text-emerald-600 text-base">0%</span>
+                    </div>
+                </div>
+
+                <!-- Graphical Representation & Detailed Breakdown -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center mb-6">
+                    <div class="w-full h-48 flex justify-center items-center">
+                        <canvas id="resultChart"></canvas>
+                    </div>
+
+                    <div class="space-y-2 text-xs">
+                        <div class="flex justify-between items-center p-2 rounded-md bg-emerald-50 border border-emerald-200">
+                            <span class="font-semibold text-emerald-800"><i class="fa-solid fa-circle-check text-emerald-600 mr-1.5"></i> Correct Answers (+4)</span>
+                            <span id="resCorrect" class="font-bold text-emerald-800 text-sm">0</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 rounded-md bg-rose-50 border border-rose-200">
+                            <span class="font-semibold text-rose-800"><i class="fa-solid fa-circle-xmark text-rose-600 mr-1.5"></i> Incorrect Answers (-1)</span>
+                            <span id="resIncorrect" class="font-bold text-rose-800 text-sm">0</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 rounded-md bg-slate-100 border border-slate-200">
+                            <span class="font-semibold text-slate-700"><i class="fa-solid fa-circle-minus text-slate-400 mr-1.5"></i> Unattempted Questions (0)</span>
+                            <span id="resUnattempted" class="font-bold text-slate-700 text-sm">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-[10px] text-center text-slate-400 border-t pt-2">
+                    Generated automatically by NEET Physics CBT Exam System | Verified & Authenticated Report
+                </div>
+            </div>
+
+            <!-- WhatsApp Send Button -->
+            <div class="mt-6 flex flex-col sm:flex-row gap-3">
+                <button onclick="sendMarksToWhatsApp()" class="flex-1 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-lg transition-all text-xs flex items-center justify-center space-x-2">
+                    <i class="fa-brands fa-whatsapp text-base"></i>
+                    <span>SEND RESULT CARD TO SIR (+91 8910587106)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // MASTER QUESTION BANK (45 QUESTIONS: Wave Optics & Dual Nature of Matter and Radiation)
+        const masterQuestions = [
+            
+            // ================= 10 STATEMENT-BASED QUESTIONS =================
+            {
+                type: "statement",
+                id: 1,
+                q: "Select the correct option regarding Statement I and Statement II:",
+                statement1: "According to Huygens' principle, each point of a wavefront acts as a secondary source of disturbance emitting secondary wavelets.",
+                statement2: "Huygens' principle easily explains why wave energy propagates in the backward direction with full amplitude.",
+                options: [
+                    "Both Statement I and Statement II are correct.",
+                    "Both Statement I and Statement II are incorrect.",
+                    "Statement I is correct but Statement II is incorrect.",
+                    "Statement I is incorrect but Statement II is correct."
+                ],
+                correct: 2
+            },
+            {
+                type: "statement",
+                id: 2,
+                q: "Evaluate the statements regarding Young's Double Slit Experiment (YDSE):",
+                statement1: "If the entire YDSE setup is immersed in a liquid of refractive index $\\mu$, the fringe width decreases by a factor of $\\mu$.",
+                statement2: "The speed and wavelength of light decrease in a medium of refractive index $\\mu > 1$, while frequency remains constant.",
+                options: [
+                    "Both Statement I and Statement II are correct.",
+                    "Both Statement I and Statement II are incorrect.",
+                    "Statement I is correct but Statement II is incorrect.",
+                    "Statement I is incorrect but Statement II is correct."
+                ],
+                correct: 0
+            },
+            {
+                type: "statement",
+                id: 3,
+                q: "Consider the following statements regarding the photoelectric effect:",
+                statement1: "The maximum kinetic energy of emitted photoelectrons depends linearly on the frequency of incident radiation above threshold frequency.",
+                statement2: "The stopping potential increases proportionally when the intensity of incident monochromatic light is doubled.",
+                options: [
+                    "Both Statement I and Statement II are correct.",
+                    "Both Statement I and Statement II are incorrect.",
+                    "Statement I is correct but Statement II is incorrect.",
+                    "Statement I is incorrect but Statement II is correct."
+                ],
+                correct: 2
+            },
+            {
+                type: "statement",
+                id: 4,
+                q: "Read the statements on de Broglie wavelength:",
+                statement1: "The de Broglie wavelength of an electron accelerated through a potential difference $V$ is given by $\\lambda = \\frac{12.27}{\\sqrt{V}}$ Å.",
+                statement2: "A neutral particle such as a neutron cannot exhibit wave properties because it carries no electric charge.",
+                options: [
+                    "Both Statement I and Statement II are correct.",
+                    "Both Statement I and Statement II are incorrect.",
+                    "Statement I is correct but Statement II is incorrect.",
+                    "Statement I is incorrect but Statement II is correct."
+                ],
+                correct: 2
+            },
+            {
+                type: "statement",
+                id: 5,
+                q: "Evaluate the statements regarding polarization of light:",
+                statement1: "Sound waves in air can be polarized using polaroids just like light waves.",
+                statement2: "Polarization is the property which confirms that light waves are transverse in nature.",
+                options: [
+                    "Both Statement I and Statement II are correct.",
+                    "Both Statement I and Statement II are incorrect.",
+                    "Statement I is correct but Statement II is incorrect.",
+                    "Statement I is incorrect but Statement II is correct."
+                ],
+                correct: 3
+            },
+            {
+                type: "statement",
+                id: 6,
+                q: "Consider Malus' Law in polarization:",
+                statement1: "When completely plane-polarized light of intensity $I_0$ falls on an analyzer, transmitted intensity is $I = I_0 \\cos^2\\theta$.",
+                statement2: "When unpolarized light passes through a single ideal polaroid sheet, its intensity becomes $I_0/2$.",
+                options: [
+                    "Both Statement I and Statement II are correct.",
+                    "Both Statement I and Statement II are incorrect.",
+                    "Statement I is correct but Statement II is incorrect.",
+                    "Statement I is incorrect but Statement II is correct."
+                ],
+                correct: 0
+            },
+            {
+                type: "statement",
+                id: 7,
+                q: "Evaluate statements on single-slit diffraction:",
+                statement1: "The angular width of the central maximum in single-slit diffraction is twice the angular width of secondary maxima.",
+                statement2: "The intensity of secondary maxima remains constant and equal to the central maximum intensity across higher orders.",
+                options: [
+                    "Both Statement I and Statement II are correct.",
+                    "Both Statement I and Statement II are incorrect.",
+                    "Statement I is correct but Statement II is incorrect.",
+                    "Statement I is incorrect but Statement II is correct."
+                ],
+                correct: 2
+            },
+            {
+                type: "statement",
+                id: 8,
+                q: "Read the statements regarding Brewster's Law:",
+                statement1: "At Brewster's angle $\\theta_p$, the reflected ray and refracted ray are mutually perpendicular to each other.",
+                statement2: "Brewster's angle depends on the refractive index of the medium as $\\tan\\theta_p = \\mu$.",
+                options: [
+                    "Both Statement I and Statement II are correct.",
+                    "Both Statement I and Statement II are incorrect.",
+                    "Statement I is correct but Statement II is incorrect.",
+                    "Statement I is incorrect but Statement II is correct."
+                ],
+                correct: 0
+            },
+            {
+                type: "statement",
+                id: 9,
+                q: "Consider statements on Davisson-Germer Experiment:",
+                statement1: "Davisson and Germer experiment provided direct experimental verification of the wave nature of electrons.",
+                statement2: "Strong constructive diffraction peak of electrons was observed at an accelerating potential of $54\\text{ V}$ and scattering angle $50^\\circ$.",
+                options: [
+                    "Both Statement I and Statement II are correct.",
+                    "Both Statement I and Statement II are incorrect.",
+                    "Statement I is correct but Statement II is incorrect.",
+                    "Statement I is incorrect but Statement II is correct."
+                ],
+                correct: 0
+            },
+            {
+                type: "statement",
+                id: 10,
+                q: "Evaluate statements on photon properties:",
+                statement1: "The rest mass of a photon is zero, and its linear momentum in vacuum is given by $p = \\frac{h}{\\lambda}$.",
+                statement2: "In a photon-electron collision, total energy and momentum are conserved, but number of photons may not be conserved.",
+                options: [
+                    "Both Statement I and Statement II are correct.",
+                    "Both Statement I and Statement II are incorrect.",
+                    "Statement I is correct but Statement II is incorrect.",
+                    "Statement I is incorrect but Statement II is correct."
+                ],
+                correct: 0
+            },
+
+            // ================= 5 ASSERTION & REASONING QUESTIONS =================
+            {
+                type: "ar",
+                id: 11,
+                q: "Assertion (A): Photoelectric emission takes place immediately (time lag $\\sim 10^{-9}\\text{ s}$) as light falls on metal surface.\nReason (R): Photoelectric emission is a quantum phenomenon where a single photon transfers its energy to a single electron in an instantaneous elastic collision.",
+                options: [
+                    "Both (A) and (R) are true and (R) is the correct explanation of (A).",
+                    "Both (A) and (R) are true but (R) is NOT the correct explanation of (A).",
+                    "(A) is true but (R) is false.",
+                    "(A) is false but (R) is true."
+                ],
+                correct: 0
+            },
+            {
+                type: "ar",
+                id: 12,
+                q: "Assertion (A): Light waves exhibit interference phenomena, but two independent sodium lamps cannot produce a sustained interference pattern.\nReason (R): Two independent light sources do not maintain a constant phase difference and are incoherent.",
+                options: [
+                    "Both (A) and (R) are true and (R) is the correct explanation of (A).",
+                    "Both (A) and (R) are true but (R) is NOT the correct explanation of (A).",
+                    "(A) is true but (R) is false.",
+                    "(A) is false but (R) is true."
+                ],
+                correct: 0
+            },
+            {
+                type: "ar",
+                id: 13,
+                q: "Assertion (A): In single slit diffraction, the central maximum becomes broader if the slit width 'a' is decreased.\nReason (R): The angular width of central maximum is inversely proportional to slit width ($2\\theta = \\frac{2\\lambda}{a}$).",
+                options: [
+                    "Both (A) and (R) are true and (R) is the correct explanation of (A).",
+                    "Both (A) and (R) are true but (R) is NOT the correct explanation of (A).",
+                    "(A) is true but (R) is false.",
+                    "(A) is false but (R) is true."
+                ],
+                correct: 0
+            },
+            {
+                type: "ar",
+                id: 14,
+                q: "Assertion (A): Moving microscopic particles like electrons display significant wave properties, whereas moving macroscopic objects like baseballs do not show noticeable diffraction.\nReason (R): The de Broglie wavelength is inversely proportional to mass, making $\\lambda$ negligibly small for macroscopic objects.",
+                options: [
+                    "Both (A) and (R) are true and (R) is the correct explanation of (A).",
+                    "Both (A) and (R) are true but (R) is NOT the correct explanation of (A).",
+                    "(A) is true but (R) is false.",
+                    "(A) is false but (R) is true."
+                ],
+                correct: 0
+            },
+            {
+                type: "ar",
+                id: 15,
+                q: "Assertion (A): When light travels from an optically rarer medium to a denser medium, its frequency decreases.\nReason (R): Frequency is an intrinsic property of the light source and remains unchanged during refraction.",
+                options: [
+                    "Both (A) and (R) are true and (R) is the correct explanation of (A).",
+                    "Both (A) and (R) are true but (R) is NOT the correct explanation of (A).",
+                    "(A) is true but (R) is false.",
+                    "(A) is false but (R) is true."
+                ],
+                correct: 3
+            },
+
+            // ================= 5 CASE STUDY-BASED QUESTIONS =================
+            {
+                type: "case",
+                id: 16,
+                caseTitle: "CASE STUDY: Einstein's Photoelectric Equation & Work Function Analysis",
+                caseText: "In 1905, Albert Einstein extended Planck's quantum hypothesis to explain the photoelectric effect. Light energy is quantized into discrete energy packets called photons ($E = h\\nu$). When a photon interacts with a metal surface, its energy is utilized to overcome the work function ($\\Phi_0$) and impart kinetic energy to the photoelectron: $h\\nu = \\Phi_0 + K_{\\max}$. If $h\\nu < \\Phi_0$, no emission occurs regardless of intensity.",
+                q: "The work function of Potassium metal is $2.30\\text{ eV}$. What is the threshold frequency $\\nu_0$ for Potassium? ($h = 6.63 \\times 10^{-34}\\text{ J}\\cdot\\text{s}, 1\\text{ eV} = 1.6 \\times 10^{-19}\\text{ J}$)",
+                options: [
+                    "$5.55 \\times 10^{14}\\text{ Hz}$",
+                    "$2.30 \\times 10^{14}\\text{ Hz}$",
+                    "$8.91 \\times 10^{14}\\text{ Hz}$",
+                    "$1.25 \\times 10^{15}\\text{ Hz}$"
+                ],
+                correct: 0
+            },
+            {
+                type: "case",
+                id: 17,
+                caseTitle: "CASE STUDY: Einstein's Photoelectric Equation & Work Function Analysis",
+                caseText: "In 1905, Albert Einstein extended Planck's quantum hypothesis to explain the photoelectric effect. Light energy is quantized into discrete energy packets called photons ($E = h\\nu$). When a photon interacts with a metal surface, its energy is utilized to overcome the work function ($\\Phi_0$) and impart kinetic energy to the photoelectron: $h\\nu = \\Phi_0 + K_{\\max}$. If $h\\nu < \\Phi_0$, no emission occurs regardless of intensity.",
+                q: "Light of frequency $1.5 \\times 10^{15}\\text{ Hz}$ is incident on a metal with work function $4.0\\text{ eV}$. What is the stopping potential $V_0$?",
+                options: [
+                    "$2.21\\text{ V}$",
+                    "$6.21\\text{ V}$",
+                    "$4.00\\text{ V}$",
+                    "$1.85\\text{ V}$"
+                ],
+                correct: 0
+            },
+            {
+                type: "case",
+                id: 18,
+                caseTitle: "CASE STUDY: Einstein's Photoelectric Equation & Work Function Analysis",
+                caseText: "In 1905, Albert Einstein extended Planck's quantum hypothesis to explain the photoelectric effect. Light energy is quantized into discrete energy packets called photons ($E = h\\nu$). When a photon interacts with a metal surface, its energy is utilized to overcome the work function ($\\Phi_0$) and impart kinetic energy to the photoelectron: $h\\nu = \\Phi_0 + K_{\\max}$. If $h\\nu < \\Phi_0$, no emission occurs regardless of intensity.",
+                q: "What is the slope of the graph plotted between Stopping Potential ($V_0$) on the Y-axis and Frequency ($\\nu$) on the X-axis?",
+                options: [
+                    "$h / e$",
+                    "$h \\cdot e$",
+                    "$\\Phi_0 / e$",
+                    "$e / h$"
+                ],
+                correct: 0
+            },
+            {
+                type: "case",
+                id: 19,
+                caseTitle: "CASE STUDY: Einstein's Photoelectric Equation & Work Function Analysis",
+                caseText: "In 1905, Albert Einstein extended Planck's quantum hypothesis to explain the photoelectric effect. Light energy is quantized into discrete energy packets called photons ($E = h\\nu$). When a photon interacts with a metal surface, its energy is utilized to overcome the work function ($\\Phi_0$) and impart kinetic energy to the photoelectron: $h\\nu = \\Phi_0 + K_{\\max}$. If $h\\nu < \\Phi_0$, no emission occurs regardless of intensity.",
+                q: "If the intensity of light incident on a metal surface is tripled while keeping frequency constant above threshold, the photoelectric current will:",
+                options: [
+                    "Become 3 times original current",
+                    "Remain unchanged",
+                    "Increase 9 times",
+                    "Become one-third"
+                ],
+                correct: 0
+            },
+            {
+                type: "case",
+                id: 20,
+                caseTitle: "CASE STUDY: Einstein's Photoelectric Equation & Work Function Analysis",
+                caseText: "In 1905, Albert Einstein extended Planck's quantum hypothesis to explain the photoelectric effect. Light energy is quantized into discrete energy packets called photons ($E = h\\nu$). When a photon interacts with a metal surface, its energy is utilized to overcome the work function ($\\Phi_0$) and impart kinetic energy to the photoelectron: $h\\nu = \\Phi_0 + K_{\\max}$. If $h\\nu < \\Phi_0$, no emission occurs regardless of intensity.",
+                q: "If the wavelength of incident light is halved, the maximum kinetic energy of the emitted photoelectrons will:",
+                options: [
+                    "More than double",
+                    "Double exactly",
+                    "Become four times",
+                    "Remain unchanged"
+                ],
+                correct: 0
+            },
+
+            // ================= 25 NUMERICAL / CRITICAL THINKING QUESTIONS =================
+            {
+                type: "critical",
+                id: 21,
+                q: "In Young's double slit experiment, two coherent sources of intensities $I_0$ and $4I_0$ interfere. Find the maximum and minimum resultant intensities on the screen:",
+                options: [
+                    "$I_{\\max} = 9I_0$, $I_{\\min} = I_0$",
+                    "$I_{\\max} = 5I_0$, $I_{\\min} = 3I_0$",
+                    "$I_{\\max} = 16I_0$, $I_{\\min} = I_0$",
+                    "$I_{\\max} = 4I_0$, $I_{\\min} = 0$"
+                ],
+                correct: 0
+            },
+            {
+                type: "critical",
+                id: 22,
+                q: "In a YDSE setup, light of wavelength $\\lambda = 6000$ Å is used with slit separation $d = 1\\text{ mm}$ and screen distance $D = 1\\text{ m}$. Calculate the fringe width $\\beta$:",
+                options: [
+                    "$0.6\\text{ mm}$",
+                    "$1.2\\text{ mm}$",
+                    "$0.3\\text{ mm}$",
+                    "$2.4\\text{ mm}$"
+                ],
+                correct: 0
+            },
+            {
+                type: "critical",
+                id: 23,
+                q: "A thin glass sheet of refractive index $\\mu = 1.5$ and thickness $t = 12\\text{ }\\mu\\text{m}$ is placed in front of one slit in YDSE ($\\lambda = 6000$ Å). By how many fringes will the central bright fringe shift?",
+                options: [
+                    "10 fringes",
+                    "20 fringes",
+                    "15 fringes",
+                    "5 fringes"
+                ],
+                correct: 0
+            },
+            {
+                type: "critical",
+                id: 24,
+                q: "In YDSE, the distance between the 3rd bright fringe and 5th dark fringe on the same side of the central maximum is (given fringe width $\\beta$):",
+                options: [
+                    "$1.5\\beta$",
+                    "$2.5\\beta$",
+                    "$2.0\\beta$",
+                    "$0.5\\beta$"
+                ],
+                correct: 0
+            },
+            {
+                type: "critical",
+                id: 25,
+                q: "In a single slit diffraction pattern, the slit width is $0.2\\text{ mm}$ and wavelength is $500\\text{ nm}$. Screen is $2\\text{ m}$ away. Calculate the linear width of the central maximum:",
+                options: [
+                    "$10\\text{ mm}$",
+                    "$5\\text{ mm}$",
+                    "$20\\text{ mm}$",
+                    "$2.5\\text{ mm}$"
+                ],
+                correct: 0
+            },
+            {
+                type: "critical",
+                id: 26,
+                q: "Unpolarized light of intensity $I_0$ passes through two polaroids $P_1$ and $P_2$ oriented such that their pass axes are at an angle of $60^\\circ$. What is the intensity of light emerging from $P_2$?",
+                options: [
+                    "$I_0 / 8$",
+                    "$I_0 / 4$",
+                    "$I_0 / 2$",
+                    "$3I_0 / 8$"
+                ],
+                correct: 0
+            },
+            {
+                type: "critical",
+                id: 27,
+                q: "Light is incident on a glass plate at Brewster's polarizing angle $\\theta_p = 60^\\circ$. What is the refractive index $\\mu$ of the glass?",
+                options: [
+                    "$\\sqrt{3} \\approx 1.732$",
+                    "$1.5$",
+                    "$1 / \\sqrt{3} \\approx 0.577$",
+                    "$1.33$"
+                ],
+                correct: 0
+            },
+            {
+                type: "critical",
+                id: 28,
+                q: "An electron and an alpha particle are accelerated through the same potential difference $V$. Ratio of de Broglie wavelength of electron to alpha particle ($\\lambda_e / \\lambda_\\alpha$) is: ($m_\\alpha = 7000 m_e, q_\\alpha = 2e$)",
+                options: [
+                    "$\\sqrt{14000}$",
+                    "$14000$",
+                    "$\\sqrt{3500}$",
+                    "$1 / \\sqrt{14000}$"
+                ],
+                correct: 0
+            },
+            {
+                type: "critical",
+                id: 29,
+                q: "A particle of mass $m$ has a de Broglie wavelength $\\lambda$. If its kinetic energy is increased by 3 times (i.e. becomes 4 times initial $K$), its new de Broglie wavelength will be:",
+                options: [
+                    "$\\lambda / 2$",
+                    "$\\lambda / 4$",
+                    "$2\\lambda$",
+                    "$\\lambda / \\sqrt{3}$"
+                ],
+                correct: 0
+            },
+            {
+                type: "critical",
+                id: 30,
+                q: "The work function of a metal surface is $2.0\\text{ eV}$. Light of wavelength $4000$ Å falls on it. Calculate the maximum speed $v_{\\max}$ of emitted photoelectrons: ($m_e = 9.1 \\times 10^{-31}\\text{ kg}, 1\\text{ eV} = 1.6 \\times 10^{-19}\\text{ J}$)",
+                options: [
+                    "\\approx $6.2 \\times 10^5\\text{ m/s}$",
+                    "\\approx $3.1 \\times 10^5\\text{ m/s}$",
+                    "\\approx $1.2 \\times 10^6\\text{ m/s}$",
+                    "\\approx $9.4 \\times 10^4\\text{ m/s}$"
+                ],
+                correct: 0
+            },
+            {
+                type: "critical",
+                id: 31,
+                q: "A $100\\text{ W}$ sodium lamp radiates energy uniformly in all directions. If $5\\%$ of input energy is converted into yellow light of wavelength $589\\text{ nm}$, how many photons are emitted per second?",
+                options: [
+                    "\\approx $1.5 \\times 10^{19}\\text{ photons/s}$",
+                    "\\approx $3.0 \\times 10^{20}\\text{ photons/s}$",
+                    "\\approx $7.5 \\times 10^{18}\\text{ photons/s}$",
+                    "\\approx $2.2 \\times 10^{17}\\text{ photons/s}$"
+                ],
+                correct: 0
+            },
+            {
+                type: "critical",
+                id: 32,
+                q: "In YDSE, the ratio of maximum to minimum intensity in the interference pattern is $25 : 9$. Find the ratio of amplitudes ($A_1 / A_2$) of the two interfering waves:",
+                options: [
+                    "$4 : 1$",
+                    "$5 : 3$",
+                    "$16 : 1$",
+                    "$25 : 9$"
+                ],
+                correct: 0
+            },
+            {
+                type: "critical",
+                id: 33,
+                q: "Two slits in YDSE are illuminated by light of two wavelengths $\\lambda_1 = 600\\text{ nm}$ and $\\lambda_2 = 480\\text{ nm}$. Find the minimum distance from central maximum where bright fringes of both wavelengths coincide ($D = 1\\text{ m}, d = 1\\text{ mm}$):",
+                options: [
+                    "$2.4\\text{ mm}$",
+                    "$1.2\\text{ mm}$",
+                    "$4.8\\text{ mm}$",
+                    "$3.6\\text{ mm}$"
+                ],
+                correct: 0
+            },
+            {
+                type: "critical",
+                id: 34,
+                q: "The angular resolution limit of a telescope objective lens of diameter $1.22\\text{ m}$ for wavelength $\\lambda = 500\\text{ nm}$ is:",
+                options: [
+                    "$5.0 \\times 10^{-7}\\text{ rad}$",
+                    "$1.22 \\times 10^{-6}\\text{ rad}$",
+                    "$6.1 \\times 10^{-7}\\text{ rad}$",
+                    "$2.5 \\times 10^{-6}\\text{ rad}$"
+                ],
+                correct: 0
+            },
+            {
+                type: "critical",
+                id: 35,
+                q: "A proton and an electron have the same de Broglie wavelength. Which particle possesses greater kinetic energy?",
+                options: [
+                    "Electron (since $K = p^2/2m$ and $m_e < m_p$)",
+                    "Proton",
+                    "Both have equal kinetic energy",
+                    "Cannot be determined without knowing velocity"
+                ],
+                correct: 0
+            },
+            {
+                type: "critical",
+                id: 36,
+                q: "If the stopping potential for photoelectrons emitted from a surface illuminated by light of wavelength $\\lambda$ is $3V_0$, and for light of wavelength $2\\lambda$ is $V_0$, find the threshold wavelength $\\lambda_0$ for the surface:",
+                options: [
+                    "$4\\lambda$",
+                    "$3\\lambda$",
+                    "$5\\lambda$",
+                    "$1.5\\lambda$"
+                ],
+                correct: 0
+            },
+            {
+                type: "critical",
+                id: 37,
+                q: "Light of wavelength $\\lambda$ strikes a photo-sensitive metal with work function $\\Phi_0 = hc/\\lambda_0$. The maximum momentum of emitted photoelectrons is given by:",
+                options: [
+                    "$\\sqrt{2m hc \\left( \\frac{1}{\\lambda} - \\frac{1}{\\lambda_0} \\right)}$",
+                    "$\\sqrt{\\frac{2m hc}{\\lambda}}$",
+                    "$\\frac{h}{\\lambda} - \\frac{h}{\\lambda_0}$",
+                    "$2m hc \\left( \\lambda_0 - \\lambda \\right)$"
+                ],
+                correct: 0
+            },
+            {
+                type: "critical",
+                id: 38,
+                q: "Two polaroids are placed at right angles to each other. A third polaroid is introduced between them with its pass axis at $45^\\circ$ to both. If unpolarized light of intensity $I_0$ falls on the first polaroid, transmitted intensity after the third polaroid is:",
+                options: [
+                    "$I_0 / 8$",
+                    "$I_0 / 4$",
+                    "$I_0 / 16$",
+                    "0"
+                ],
+                correct: 0
+            },
+            {
+                type: "critical",
+                id: 39,
+                q: "An electron is accelerated through a potential difference of $100\\text{ V}$. Its de Broglie wavelength is closest to:",
+                options: [
+                    "$1.23\\text{ Å}$ ($0.123\\text{ nm}$)",
+                    "$12.3\\text{ Å}$ ($1.23\\text{ nm}$)",
+                    "$0.123\\text{ Å}$",
+                    "$2.46\\text{ Å}$"
+                ],
+                correct: 0
+            },
+            {
+                type: "critical",
+                id: 40,
+                q: "In YDSE with slit separation $d = 0.3\\text{ mm}$ and screen distance $D = 1.5\\text{ m}$, the 4th bright fringe is formed at $1.0\\text{ cm}$ from central maximum. The wavelength of light used is:",
+                options: [
+                    "$500\\text{ nm}$ ($5000\\text{ Å}$)",
+                    "$600\\text{ nm}$ ($6000\\text{ Å}$)",
+                    "$400\\text{ nm}$ ($4000\\text{ Å}$)",
+                    "$625\\text{ nm}$ ($6250\\text{ Å}$)"
+                ],
+                correct: 0
+            },
+            {
+                type: "critical",
+                id: 41,
+                q: "The threshold wavelength for photoelectric effect on a sodium surface is $5400$ Å. Will photoelectric emission occur if electromagnetic radiation of wavelength $6000$ Å falls on it?",
+                options: [
+                    "No, because incident wavelength $\\lambda > \\lambda_0$ (photon energy is less than work function)",
+                    "Yes, but with low kinetic energy",
+                    "Yes, if intensity is made very high",
+                    "Depends on angle of incidence"
+                ],
+                correct: 0
+            },
+            {
+                type: "critical",
+                id: 42,
+                q: "In a single slit diffraction experiment, if the slit width 'a' is made equal to wavelength $\\lambda$ of light, the first diffraction minimum will be formed at an angle $\\theta$ equal to:",
+                options: [
+                    "$90^\\circ$ ($\n\\sin\\theta = 1$)",
+                    "$30^\\circ$",
+                    "$45^\\circ$",
+                    "$0^\\circ$"
+                ],
+                correct: 0
+            },
+            {
+                type: "critical",
+                id: 43,
+                q: "A beam of light consisting of two wavelengths $650\\text{ nm}$ and $520\\text{ nm}$ is used in YDSE. Find the order $n$ of bright fringe of $650\\text{ nm}$ which coincides with $(n+1)$th bright fringe of $520\\text{ nm}$:",
+                options: [
+                    "$n = 4$",
+                    "$n = 3$",
+                    "$n = 5$",
+                    "$n = 2$"
+                ],
+                correct: 0
+            },
+            {
+                type: "critical",
+                id: 44,
+                q: "Find the de Broglie wavelength associated with a thermal neutron at temperature $27^\\circ\\text{C}$ ($T = 300\\text{ K}$): ($m_n = 1.67 \\times 10^{-27}\\text{ kg}, k_B = 1.38 \\times 10^{-23}\\text{ J/K}$)",
+                options: [
+                    "\\approx $1.78\\text{ Å}$ ($0.178\\text{ nm}$)",
+                    "\\approx $3.56\\text{ Å}$",
+                    "\\approx $0.50\\text{ Å}$",
+                    "\\approx $12.3\\text{ Å}$"
+                ],
+                correct: 0
+            },
+            {
+                type: "critical",
+                id: 45,
+                q: "The intensity ratio of two interfering light waves in a double-slit experiment is $100 : 1$. The contrast ratio $\\frac{I_{\\max} - I_{\\min}}{I_{\\max} + I_{\\min}}$ of fringes is:",
+                options: [
+                    "$20 / 101 \\approx 0.198$",
+                    "$100 / 101$",
+                    "$99 / 101$",
+                    "$10 / 11$"
+                ],
+                correct: 0
+            }
+        ];
+
+        // GLOBAL APP STATE
+        let candidateName = "";
+        let shuffledQuestions = [];
+        let userAnswers = {}; // { qIndex: optionIndex }
+        let markedForReview = {}; // { qIndex: boolean }
+        let visitedQuestions = {}; // { qIndex: boolean }
+        let currentQIndex = 0;
+        let timerSeconds = 3600; // 1 Hour
+        let timerInterval = null;
+        let captchaAns = 0;
+        let examSubmitted = false;
+
+        // Initialize Captcha & Date Verification on Load
+        window.onload = function() {
+            generateCaptcha();
+        };
+
+        function generateCaptcha() {
+            const num1 = Math.floor(Math.random() * 9) + 1;
+            const num2 = Math.floor(Math.random() * 9) + 1;
+            captchaAns = num1 + num2;
+            document.getElementById('captchaDisplay').innerText = `${num1} + ${num2} = ?`;
+        }
+
+        // SEED SHUFFLE ALGORITHM FOR UNIQUE CANDIDATE ORDER
+        function seedShuffle(array, seedString) {
+            let hash = 0;
+            for (let i = 0; i < seedString.length; i++) {
+                hash = seedString.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            
+            let result = [...array];
+            let m = result.length, t, i;
+            while (m) {
+                let pseudoRandom = Math.abs(Math.sin(hash++)) * 10000;
+                i = Math.floor((pseudoRandom - Math.floor(pseudoRandom)) * m--);
+                t = result[m];
+                result[m] = result[i];
+                result[i] = t;
+            }
+            return result;
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const nameInput = document.getElementById('candidateName').value.trim();
+            const passInput = document.getElementById('examPassword').value.trim();
+            const captchaInput = parseInt(document.getElementById('captchaInput').value.trim());
+            const errorDiv = document.getElementById('loginError');
+
+            errorDiv.classList.add('hidden');
+
+            // 1. Password Verification (Current Date DDMMYYYY)
+            const now = new Date();
+            const dd = String(now.getDate()).padStart(2, '0');
+            const mm = String(now.getMonth() + 1).padStart(2, '0');
+            const yyyy = now.getFullYear();
+            const expectedPass = `${dd}${mm}${yyyy}`;
+
+            if (passInput !== expectedPass) {
+                errorDiv.innerText = `Invalid Password! Password must be today's date in DDMMYYYY format.`;
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
+            // 2. Captcha Verification
+            if (captchaInput !== captchaAns) {
+                errorDiv.innerText = `Incorrect Captcha answer. Please try again.`;
+                errorDiv.classList.remove('hidden');
+                generateCaptcha();
+                return;
+            }
+
+            candidateName = nameInput;
+
+            // Seed shuffle question bank based on candidate name
+            shuffledQuestions = seedShuffle(masterQuestions, candidateName.toLowerCase());
+
+            // Update Header & Watermark
+            document.getElementById('headerCandidateName').innerText = candidateName;
+            document.getElementById('resCandidateName').innerText = candidateName;
+            
+            setupWatermark(candidateName);
+
+            // Hide Modal Gate & Launch Exam
+            document.getElementById('verificationGate').classList.add('hidden');
+
+            // Request Full Screen Enforcement
+            requestFullScreen();
+
+            // Start Exam Timer & Security Listeners
+            startTimer();
+            setupSecurityListeners();
+
+            // Render Palette & First Question
+            renderPalette();
+            loadQuestion(0);
+        }
+
+        function setupWatermark(name) {
+            const grid = document.getElementById('watermarkGrid');
+            grid.innerHTML = '';
+            grid.classList.remove('hidden');
+            for (let i = 0; i < 12; i++) {
+                const item = document.createElement('div');
+                item.className = 'watermark-item';
+                item.innerText = `${name}\n+91 8910587106`;
+                grid.appendChild(item);
+            }
+        }
+
+        function setupSecurityListeners() {
+            // Context menu block
+            document.addEventListener('contextmenu', e => e.preventDefault());
+
+            // Keyboard shortcut block
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'F12' || 
+                   (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
+                   (e.ctrlKey && e.key === 'u') ||
+                   e.key === 'PrintScreen') {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+            // Tab Switching / Visibility Change Auto-Submit
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden && !examSubmitted) {
+                    alert("SECURITY VIOLATION: You switched tabs or minimized the window. Your exam is being submitted immediately.");
+                    forceSubmitTest();
+                }
+            });
+
+            // Fullscreen change detection
+            document.addEventListener('fullscreenchange', function() {
+                if (!document.fullscreenElement && !examSubmitted) {
+                    alert("SECURITY VIOLATION: You exited Full-Screen mode. The exam will now auto-submit.");
+                    forceSubmitTest();
+                }
+            });
+        }
+
+        function requestFullScreen() {
+            const docEl = document.documentElement;
+            if (docEl.requestFullscreen) {
+                docEl.requestFullscreen().catch(err => console.log(err));
+            }
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (timerSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    alert("Time's Up! Your exam is being submitted.");
+                    forceSubmitTest();
+                    return;
+                }
+                timerSeconds--;
+                const mins = Math.floor(timerSeconds / 60);
+                const secs = timerSeconds % 60;
+                document.getElementById('timerDisplay').innerText = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        function renderPalette() {
+            const paletteGrid = document.getElementById('paletteGrid');
+            paletteGrid.innerHTML = '';
+
+            let countAnswered = 0;
+            let countNotAnswered = 0;
+            let countMarked = 0;
+            let countNotVisited = 0;
+
+            shuffledQuestions.forEach((q, idx) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'w-8 h-8 rounded-full text-xs font-bold transition-all flex items-center justify-center shadow-sm border ';
+
+                const isAnswered = userAnswers[idx] !== undefined;
+                const isMarked = markedForReview[idx] === true;
+                const isVisited = visitedQuestions[idx] === true;
+
+                if (isMarked) {
+                    btn.classList.add('bg-amber-400', 'text-amber-950', 'border-amber-500');
+                    countMarked++;
+                } else if (isAnswered) {
+                    btn.classList.add('bg-emerald-500', 'text-white', 'border-emerald-600');
+                    countAnswered++;
+                } else if (isVisited) {
+                    btn.classList.add('bg-rose-500', 'text-white', 'border-rose-600');
+                    countNotAnswered++;
+                } else {
+                    btn.classList.add('bg-slate-200', 'text-slate-700', 'border-slate-300');
+                    countNotVisited++;
+                }
+
+                if (idx === currentQIndex) {
+                    btn.classList.add('ring-2', 'ring-blue-700', 'ring-offset-1', 'scale-110');
+                }
+
+                btn.innerText = idx + 1;
+                btn.onclick = () => loadQuestion(idx);
+                paletteGrid.appendChild(btn);
+            });
+
+            document.getElementById('countAnswered').innerText = countAnswered;
+            document.getElementById('countNotAnswered').innerText = countNotAnswered;
+            document.getElementById('countMarked').innerText = countMarked;
+            document.getElementById('countNotVisited').innerText = countNotVisited;
+        }
+
+        function loadQuestion(idx) {
+            currentQIndex = idx;
+            visitedQuestions[idx] = true;
+
+            document.getElementById('questionNumberBadge').innerText = `Question ${idx + 1} of 45`;
+            document.getElementById('prevBtn').disabled = (idx === 0);
+
+            const q = shuffledQuestions[idx];
+            const area = document.getElementById('questionContentArea');
+            area.innerHTML = '';
+
+            let html = '';
+
+            // Case Study Prompt Banner
+            if (q.type === 'case') {
+                html += `<div class="mb-4 bg-indigo-50 border border-indigo-200 p-3.5 rounded-xl text-xs text-indigo-950">
+                    <h3 class="font-extrabold text-indigo-900 border-b border-indigo-200 pb-1 mb-1.5"><i class="fa-solid fa-book-open mr-1.5"></i> ${q.caseTitle}</h3>
+                    <p class="leading-relaxed font-medium">${q.caseText}</p>
+                </div>`;
+            }
+
+            // Question Text
+            html += `<h2 class="text-sm md:text-base font-bold text-slate-800 mb-3 leading-snug">${q.q}</h2>`;
+
+            // Statements Rendering
+            if (q.type === 'statement') {
+                html += `<div class="mb-4 bg-slate-50 p-3 rounded-xl border border-slate-200 space-y-2 text-xs md:text-sm text-slate-800">
+                    <p><strong>Statement I:</strong> ${q.statement1}</p>
+                    <p><strong>Statement II:</strong> ${q.statement2}</p>
+                </div>`;
+            }
+
+            // Options List
+            html += `<div class="space-y-2.5 mt-4">`;
+            q.options.forEach((opt, oIdx) => {
+                const isSelected = userAnswers[idx] === oIdx;
+                html += `
+                    <label onclick="selectOption(${oIdx})" class="flex items-start space-x-3 p-3 rounded-xl border cursor-pointer transition-all text-xs md:text-sm ${
+                        isSelected ? 'bg-blue-50 border-blue-600 text-blue-950 font-semibold ring-1 ring-blue-500' : 'bg-white border-slate-200 hover:bg-slate-50 text-slate-700'
+                    }">
+                        <input type="radio" name="qOpt" ${isSelected ? 'checked' : ''} class="mt-0.5 text-blue-600 focus:ring-blue-500">
+                        <span class="flex-1">${opt}</span>
+                    </label>
+                `;
+            });
+            html += `</div>`;
+
+            area.innerHTML = html;
+            renderPalette();
+
+            // Re-render MathJax formulas on screen
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([area]);
+            }
+        }
+
+        function selectOption(oIdx) {
+            userAnswers[currentQIndex] = oIdx;
+            delete markedForReview[currentQIndex];
+            loadQuestion(currentQIndex);
+        }
+
+        function clearResponse() {
+            delete userAnswers[currentQIndex];
+            delete markedForReview[currentQIndex];
+            loadQuestion(currentQIndex);
+        }
+
+        function markForReview() {
+            markedForReview[currentQIndex] = true;
+            renderPalette();
+            nextQuestion();
+        }
+
+        function prevQuestion() {
+            if (currentQIndex > 0) {
+                loadQuestion(currentQIndex - 1);
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQIndex < shuffledQuestions.length - 1) {
+                loadQuestion(currentQIndex + 1);
+            }
+        }
+
+        function confirmSubmitTest() {
+            const attempted = Object.keys(userAnswers).length;
+            if (confirm(`Are you sure you want to submit your Physics exam?\n\nTotal Attempted: ${attempted} / 45`)) {
+                forceSubmitTest();
+            }
+        }
+
+        function forceSubmitTest() {
+            examSubmitted = true;
+            clearInterval(timerInterval);
+
+            // Calculate Marks (+4 correct, -1 wrong, 0 unattempted)
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let unattemptedCount = 0;
+
+            shuffledQuestions.forEach((q, idx) => {
+                const ans = userAnswers[idx];
+                if (ans === undefined) {
+                    unattemptedCount++;
+                } else if (ans === q.correct) {
+                    correctCount++;
+                } else {
+                    incorrectCount++;
+                }
+            });
+
+            const totalScore = (correctCount * 4) - (incorrectCount * 1);
+            const totalAttempted = correctCount + incorrectCount;
+            const accuracy = totalAttempted > 0 ? ((correctCount / totalAttempted) * 100).toFixed(1) : 0;
+
+            // Display Score Summary
+            document.getElementById('resTotalScore').innerText = `${totalScore} / 180`;
+            document.getElementById('resAttempted').innerText = `${totalAttempted} / 45`;
+            document.getElementById('resAccuracy').innerText = `${accuracy}%`;
+            document.getElementById('resCorrect').innerText = correctCount;
+            document.getElementById('resIncorrect').innerText = incorrectCount;
+            document.getElementById('resUnattempted').innerText = unattemptedCount;
+
+            // Display Results Modal
+            document.getElementById('resultModal').classList.remove('hidden');
+
+            // Render Chart.js Graphical Analysis
+            renderChart(correctCount, incorrectCount, unattemptedCount);
+        }
+
+        function renderChart(correct, incorrect, unattempted) {
+            const ctx = document.getElementById('resultChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Correct (+4)', 'Incorrect (-1)', 'Unattempted'],
+                    datasets: [{
+                        data: [correct, incorrect, unattempted],
+                        backgroundColor: ['#10b981', '#f43f5e', '#cbd5e1'],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: { size: 11, weight: 'bold' },
+                                boxWidth: 12
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function sendMarksToWhatsApp() {
+            const card = document.getElementById('resultCardCapture');
+
+            // Convert Scorecard DOM element to high-resolution PNG image
+            html2canvas(card, { scale: 2 }).then(canvas => {
+                const imageBase64 = canvas.toDataURL("image/png");
+
+                // Prepare WhatsApp Pre-filled message with breakdown
+                const scoreText = document.getElementById('resTotalScore').innerText;
+                const accuracyText = document.getElementById('resAccuracy').innerText;
+                const correct = document.getElementById('resCorrect').innerText;
+                const incorrect = document.getElementById('resIncorrect').innerText;
+
+                const msg = encodeURIComponent(
+                    `*NEET PHYSICS CBT EXAM RESULT REPORT*\n` +
+                    `*Topic:* NEET PHYSICS XII EXAM SERIES 6 SET A (Wave Optics & Dual Nature)\n` +
+                    `*Candidate Name:* ${candidateName}\n` +
+                    `*Total Score:* ${scoreText}\n` +
+                    `*Accuracy:* ${accuracyText}\n` +
+                    `*Correct Answers:* ${correct}\n` +
+                    `*Incorrect Answers:* ${incorrect}\n\n` +
+                    `_Sir, I have completed my CBT Physics exam. Attached is my score summary card screenshot._`
+                );
+
+                const waUrl = `https://api.whatsapp.com/send?phone=918910587106&text=${msg}`;
+                
+                // Prompt candidate to download screenshot image
+                const link = document.createElement('a');
+                link.download = `${candidateName.replace(/\s+/g, '_')}_NEET_Physics_Result.png`;
+                link.href = imageBase64;
+                link.click();
+
+                // Open WhatsApp chat
+                window.open(waUrl, '_blank');
+            });
+        }
+    </script>
+</body>
+</html>
